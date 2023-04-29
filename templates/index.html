@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+        <title>Personal Portfolio Website</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        <script src="https://kit.fontawesome.com/e61b072a53.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div id="header">
+            <div class="container">
+                <nav>    
+                    {% if logged_in %}
+                        <div class="top-left-text">Welcome {{ session.get('username') }}! At the bottom<br> you will find a link to a forum for users.</div>
+                    {% else %}
+                        <div class="top-left-text">Please login or create an account!</div>
+                    {% endif %}
+                    <h1 class="logo"><img src="{{ url_for('static', filename='images/masonslogo.png') }}"></h1>
+                    <img src="#" alt="">
+                    <ul id="sidemenu">
+                        <li><a href="#header">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        {% if logged_in %}
+                            <li><a href="/logout"><button>Log Out</button></a></li>
+                        {% else %}
+                            <li><a href="/login"><button>Log In</button></a></li>
+                        {% endif %}
+                        <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+                    </ul>
+                    <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+                </nav>
+                <p id="error-message">{{ error_message }}</p>
+                <div class="header-text">
+                    <p>Software Engineer</p>
+                    <h1>Hi, I'm <span>Mason Garrett</span><br>From Raleigh, NC</h1>
+                </div>
+            </div>
+        </div>
+        <!-----------------------------about---------------------------------->
+        <div id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="about-col-1">
+                        <img src="{{ url_for('static', filename='images/beachpicture.JPEG') }}">
+                    </div>
+                    <div class="about-col-2">
+                        <h1 class="sub-title">About Me</h1>
+                        <p>
+                            Hello! My name's Mason and I am a passionate individual with a strong mathematical foundation and a growing interest in software engineering. Despite being new to the field, I've been actively working on various coding projects and I love the problem-solving aspect of programming. I'm always eager to learn and grow, and I believe that my passion for self-improvement will make me an asset to any software engineering team.
+                        </p>
+                        <br>
+                        <p>
+                            As a sociable person, I enjoy meeting and collaborating with others in the industry. When I am not coding I like to work out, play chess or spend time with friends. I'm ready to hit the ground running in a role that will allow me to learn, grow, and contribute to meaningful projects.
+                        </p>
+
+                        <div class="tab-titles">
+                            <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                            <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                            <p class="tab-links" onclick="opentab('education')">Education</p>
+                        </div>
+                        <div class="tab-contents active-tab" id="skills">
+                            <ul>
+                                <li><span>Technical</span><br>Data Structures and Algorithms, SDLC, Git</li>
+                                <li><span>Frameworks and Databases</span><br>Flask, Django, Angular, MySQL, SQLite</li>
+                                <li><span>Languages</span><br>Python, Java, C#, HTML, CSS, Javascript</li>
+                            </ul>
+                        </div>
+                        <div class="tab-contents" id="experience">
+                            <ul>
+                                <li><span>MoonRift Entertainment</span><br>Game Developer Intern</li>
+                            </ul>
+                        </div>
+                        <div class="tab-contents" id="education">
+                            <ul>
+                                <li><span>East Carolina University</span><br>B.S. Computer Science</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-----------------------------services---------------------------------->
+        <div id="services">
+            <div class="container">
+                <h1 class="sub-title">My Services</h1>
+                <div class="services-list">
+                    <div>
+                        <i class="fa-solid fa-laptop-code"></i>
+                        <h2>Software Engineer</h2>
+                        <p>Design, develop, test, and maintain software systems and applications
+                        </p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-globe"></i>
+                        <h2>Web Developer</h2>
+                        <p>Design, build, and maintain websites and web applications
+                        </p>
+                        <!---<a href="#">Learn more</a>--->
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-layer-group"></i>
+                        <h2>Full-Stack Developer</h2>
+                        <p>Design, build, and maintain both the front-end and back-end of web applications
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-----------------------------portfolio---------------------------------->
+        <div id="portfolio">
+            <div class="container">
+                <h1 class="sub-title">My Work</h1>
+                <div class="work-list">
+                    <div class="work">
+                        <img src="{{ url_for('static', filename='images/loginsystem-img.png') }}">
+                        <div class="layer">
+                            <h3>Log-in System (NOT ADDED YET)</h3>
+                            <p><em>Personal Project</em>
+                            </p>
+                            <a href="#portfolio"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="work">
+                        <img src="{{ url_for('static', filename='images/hedgeball-img.png') }}">
+                        <div class="layer">
+                            <h3>HedgeBall <em>~3D Game</em></h3>
+                            <p><em>Internship Project</em>
+                            </p>
+                            <a href="https://masongarrett.itch.io/hedgeball"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="work">
+                        <img src="{{ url_for('static', filename='images/escapethelivingdead-img.png') }}">
+                        <div class="layer">
+                            <h3>Escape The Living Dead (Downloadable) <em>~3D Game</em></h3>
+                            <p><em>School Project</em>
+                            </p>
+                            <a href="https://masongarrett.itch.io/escape-the-living-dead"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-list-hidden">
+                    <div class="work">
+                        <img src="{{ url_for('static', filename='images/skyrace-img.png') }}">
+                        <div class="layer">
+                            <h3>Sky Race <em>~3D Game</em></h3>
+                            <p><em>School Project</em>
+                            </p>
+                            <a href="https://masongarrett.itch.io/sky-race"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="work">
+                        <img src="{{ url_for('static', filename='images/farmfrenzy-img.png') }}">
+                        <div class="layer">
+                            <h3>Farm Frenzy <em>~2D Game</em></h3>
+                            <p><em>School Project</em>
+                            </p>
+                            <a href="https://masongarrett.itch.io/farm-frenzy"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="work">
+                        <img src="{{ url_for('static', filename='images/punchin-img.png') }}">
+                        <div class="layer">
+                            <h3>Employee Clock-In Clock-Out System</h3>
+                            <p><em>School Project</em>
+                            </p>
+                            <a href="https://gitlab.com/cs-department-ecu/csci-4230-spring-2023/section-003/ecicos/ECICOS"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <a href="#portfolio" class="btn">See more</a>
+            </div>
+        </div>
+        <!-----------------------------contact---------------------------------->
+        <div id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="contact-left">
+                        <h1 class="sub-title">Contact Me</h1>
+                        <p><i class="fa-solid fa-paper-plane"></i>mgarrett620@gmail.com</p>
+                        <p><i class="fa-solid fa-square-phone"></i>919-609-5717</p>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/mason-garrett"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/masonrgarrett"><i class="fa-brands fa-square-instagram"></i></a>
+                            <a href="https://www.uschess.org/msa/MbrDtlMain.php?30868864"><i class="fa-solid fa-chess"></i></a>
+
+                        </div>
+                        <a href="{{ url_for('static', filename='images/mason_garrett_resume.pdf') }}" download class="btn btn2">Download Resume</a>
+                    </div>
+                    <div class="contact-right">
+                        <form name="submit-to-google-sheet">
+                            <input type="text" name="Name" placeholder="Your Name" required>
+                            <input type="text" name="Email" placeholder="Your Email" required>
+                            <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                            <button type="submit" class="btn btn2">Submit</button>
+                        </form>
+                        <span id="msg"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>
+                    Thanks for reading!
+                </p>
+            </div>
+        </div>
+        <script>
+            var tablinks = document.getElementsByClassName("tab-links");
+            var tabcontents = document.getElementsByClassName("tab-contents");
+            function opentab(tabname) {
+                for(tablink of tablinks) {
+                    tablink.classList.remove("active-link");
+                }
+                for(tabcontent of tabcontents) {
+                    tabcontent.classList.remove("active-tab");
+                }
+                event.currentTarget.classList.add("active-link");
+                document.getElementById(tabname).classList.add("active-tab");
+            }
+        </script>
+        <script>
+            var sidemenu = document.getElementById("sidemenu");
+            function openmenu(){
+                sidemenu.style.right = "0";
+            }
+            function closemenu(){
+                sidemenu.style.right = "-200px";
+            }
+        </script>
+        <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxLBgbslQjjvFC1g86HoxKXvdKhxxtW5Jh9T9nCjD2VwZf_pDzVN7Xzb-USolNUItdi/exec'
+            const form = document.forms['submit-to-google-sheet']
+            const msg = document.getElementById("msg")
+
+            form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    msg.innerHTML = "Message sent successfully"
+                    setTimeout(function(){
+                        msg.innerHTML = ""
+                },5000)
+                form.reset()
+                })
+                .catch(error => console.error('Error!', error.message))
+                })
+        </script>
+        <script>
+            document.querySelector('.btn').addEventListener('click', function() {
+                var workList = document.querySelector('.work-list-hidden');
+                var btn = document.querySelector('.btn');
+                if (workList.style.display === 'none' || workList.style.display === '') {
+                    workList.style.display = 'grid';
+                    btn.textContent = 'See less';
+                } else {
+                    workList.style.display = 'none';
+                    btn.textContent = 'See more';
+                }
+            });
+        </script>
+    </body>
+</html>
