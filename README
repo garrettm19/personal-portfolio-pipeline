@@ -1,2 +1,5 @@
 garrettm19@students.ecu.edu - Mason Garrett
-jayaramr18@students.ecu.edu - Rahul Jayaram
+
+Quick Start:
+./.venv/scripts/activate
+python app.py
