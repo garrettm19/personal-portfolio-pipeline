@@ -28,7 +28,7 @@ def signin():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        
+
         # Check if the username exists in the database
         user = UserInfo.query.filter_by(username=username).first()
         if user is None:
@@ -42,7 +42,7 @@ def signin():
                 session['logged_in'] = True
                 session['username'] = username
                 return redirect(url_for('index'))
-    
+
     return render_template('login.html', error_message=error_message)
 
 @app.route('/logout')
@@ -58,17 +58,17 @@ def signup():
             error_message = "Username not found."
         else:
             username = request.form['username']
-        
+
         if 'password' not in request.form:
             error_message = "Password not found."
         else:
             password = request.form['password']
-        
+
         if 'confirm_password' not in request.form:
             error_message = "Confirm password not found."
         else:
             confirm_password = request.form['confirm_password']
-        
+
         if len(username) < 6 or len(username) > 20 or ' ' in username:
             error_message = "Username must be between 6 and 20 characters and cannot contain spaces."
         elif len(password) < 6 or len(password) > 20 or ' ' in password:
@@ -77,7 +77,7 @@ def signup():
             error_message = "Passwords do not match."
         else:
             hashed_password = generate_password_hash(password)
-            
+
             # Check if the username already exists in the database
             user = UserInfo.query.filter_by(username=username).first()
             if user is not None:
@@ -87,9 +87,9 @@ def signup():
                 new_user = UserInfo(username=username, password=hashed_password)
                 db.session.add(new_user)
                 db.session.commit()
-                
+
                 return render_template('login.html', error_message=f"Thanks for signing up, {username}!")
-    
+
     return render_template('login.html', error_message=error_message)
 
 if __name__ == "__main__":
